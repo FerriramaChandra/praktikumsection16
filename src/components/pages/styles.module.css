@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+
+.HeaderColor {
+    justify-content: center;
+}
+
+
+.Todos {
+    font-size: 6rem;
+    background: linear-gradient(to right, yellow, cyan);
+    background-clip:transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Header */
+
+
+
+/* TodoInput */
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid black;
+    width: 400px;
+    margin-bottom: 1rem;
+}
+
+.container input {
+    border: none;
+    width: 320px;
+}
+
+.container input:focus {
+    outline: none;
+}
+
+.container button {
+    border: none;
+    background: none;
+}
+
+/* TodoInput */
+
+
+
+/* ListItem */
+
+.tdCheckbox {
+    border-bottom: 1px solid black;
+    height: 30px;
+    width: 20px;
+}
+.tdText {
+    border-bottom: 1px solid black;
+    height: 30px;
+    width: 330px;
+}
+.tdSubmit {
+    border-bottom: 1px solid black;
+    height: 30px;
+    width: 50px;
+}
+
+/* ListItem */

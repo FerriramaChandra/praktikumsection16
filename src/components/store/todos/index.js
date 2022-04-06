@@ -1,33 +1,36 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
-const initialValue = [{
-    id: 1,
-    title: "Mengerjakan exercise",
-    completed: true
-}, {
-    id: 2,
-    title: "Mengerjakan Assignment",
-    completed: false
-}]
+const initialState = {
+    value :
+    [{
+        title: "Mengerjakan exercise",
+        completed: true
+    }, {
+        title: "Mengerjakan Assignment",
+        completed: false
+    }]
+}
 
 
-const dataTodos = createSlice ({
+export const dataTodos = createSlice ({
     name: "Todos",
-    initialValue,
-    reducers : {
-        submit (state, action) {
-            state.id = action.payload[0].value
-            state.title = action.payload[1].value
-            state.completed = action.payload[2].value
+    initialState,
+    reducers: {
+        submit: (state, action) => {
+            const newData = action.payload
+            state.value = [...state.value, newData]
         },
-        deleteTodo (state, action) {
-            state.id = ""
-            state.title = ""
-            state.completed = false
+        deleteTodo: (state, action) => {
+            const todoIdx = action.payload
+            state.value.splice(todoIdx, 1)
+        },
+        CheckTodo: (state, action) => {
+            const todoIdx = action.payload
+            state.value[todoIdx].completed = !state.value[todoIdx].completed
         }
     }
 });
 
-export const { submit, deleteTodo } = dataTodos.actions;
+export const { submit, deleteTodo, CheckTodo } = dataTodos.actions;
 
 export default dataTodos.reducer;

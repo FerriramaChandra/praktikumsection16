@@ -1,32 +1,33 @@
-import ListItem from "./ListItem"
 import styles from "./styles.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
-import todos, { deleteTodo } from "../store/todos";
-
+import { deleteTodo, CheckTodo } from "../store/todos";
 
 const ListTodo = (handleCheckBoxChange) => {
 
     const dispacth = useDispatch();
 
-    const deleteTodo = () => {
-        dispacth(deleteTodo())
+
+    const HandleDelete = (todoIdx) => {
+        dispacth(deleteTodo(todoIdx))
     }
 
-    const Todos = useSelector((state) => state.Todos)
+    const HandleCheck = (todoIdx) => {
+        dispacth(CheckTodo(todoIdx))
+    }
 
+    const Todos = useSelector((state) => state.Todos.value)
     console.log(Todos)
-
     return (
         <div>
             <table style={{borderCollapse:"collapse"}}>
                 <tbody>
-                    {Todos.map((todo) =>(
-                        <tr>
-                            <td className={styles.tdCheckbox}><input type="checkbox" checked={todos.completed} onChange={() => {handleCheckBoxChange(todos.id)}}/></td>
-                            <td className={styles.tdText} style={{textDecoration: todos.completed ? 'line-through' : 'none'}}>{todos.title}</td>
+                    {Todos.map((todo, todoIdx) =>(
+                        <tr key={todoIdx}>
+                            <td className={styles.tdCheckbox}><input type="checkbox" checked={todo.completed} onChange={() => HandleCheck(todoIdx)}/></td>
+                            <td className={styles.tdText} style={{textDecoration: todo.completed ? 'line-through' : 'none'}}>{todo.title}</td>
                             <td className={styles.tdSubmit}>
-                                <button onClick={()=>{deleteTodo(todos.id)}}>Hapus</button>
+                                <button onClick={()=>{HandleDelete(todoIdx)}}>Hapus</button>
                             </td>
                         </tr>
                     ) )}
